@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import classnames from 'classnames'
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography'
 import Chip from 'material-ui/Chip';
@@ -35,18 +34,9 @@ class PokemonDetail extends Component {
   }
 
   render() {
-    let typeClass
     const { pokemon, loading } = this.state
     const { classes } = this.props
-    
-    if (pokemon) {
-      typeClass = classnames({
-        orange: pokemon.type === 'electric',
-        red: pokemon.type === 'fire',
-        green: pokemon.type === 'grass',
-      })
-    }
-  
+
     return (
       loading ? <CircularProgress /> :
       <div>
