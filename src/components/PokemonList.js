@@ -6,6 +6,10 @@ export default function PokemonList(props) {
     return url.split('/').reverse()[1]
   }
 
+  if (props.loading) {
+    return <p>Chargement...</p>
+  }
+
   if (props.pokemons) {
     return (
       <ul>
