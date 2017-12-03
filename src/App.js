@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter,
+  Route,
+} from 'react-router-dom'
 
 import { POKEMONS } from './config'
 import PokemonList from './components/PokemonList'
@@ -9,10 +13,13 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div>
-        <PokemonList pokemons={POKEMONS} />
-        <PokemonDetail />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" component={() => <PokemonList pokemons={POKEMONS} />}/>
+          <Route path="/pokemon" component={PokemonDetail}/>
+        </div>
+      </BrowserRouter>
+
     );
   }
 }
