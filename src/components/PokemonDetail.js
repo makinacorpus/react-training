@@ -43,6 +43,7 @@ class PokemonDetail extends Component {
         <Typography type="display2" gutterBottom>
           {pokemon.name}
         </Typography>
+        <img src={pokemon.sprites.front_default} />
         <p>Size: {pokemon.height}</p>
         <p>PV: {pokemon.base_experience}</p>
         <div>Type: 
