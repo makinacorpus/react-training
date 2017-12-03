@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { POKEMONS } from '../config'
 
 export default function PokemonDetail(props) {
-  const pokemon = POKEMONS[0]
+  const pokemon = POKEMONS[props.match.params.id]
   const typeClass = classnames({
     orange: pokemon.type === 'electric',
     red: pokemon.type === 'fire',

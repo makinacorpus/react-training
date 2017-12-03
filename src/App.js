@@ -16,7 +16,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact path="/" component={() => <PokemonList pokemons={POKEMONS} />}/>
-          <Route path="/pokemon" component={PokemonDetail}/>
+          <Route path="/pokemon/:id" component={PokemonDetail}/>
         </div>
       </BrowserRouter>
 
