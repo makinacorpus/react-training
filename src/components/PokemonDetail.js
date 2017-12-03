@@ -4,14 +4,22 @@ import classnames from 'classnames'
 import { POKEMONS } from '../config'
 
 export default function PokemonDetail(props) {
+  let error = false
+  let typeClass
   const pokemon = POKEMONS[props.match.params.id]
-  const typeClass = classnames({
-    orange: pokemon.type === 'electric',
-    red: pokemon.type === 'fire',
-    green: pokemon.type === 'grass',
-  })
+  
+  if (!pokemon) {
+    error = 'Aucun pokemon trouvé'
+  } else {
+    typeClass = classnames({
+      orange: pokemon.type === 'electric',
+      red: pokemon.type === 'fire',
+      green: pokemon.type === 'grass',
+    })
+  }
 
   return (
+    error ? <p>{error}</p> :
     <div>
       <h1>{pokemon.name}</h1>
       <p>Size: {pokemon.size}</p>
