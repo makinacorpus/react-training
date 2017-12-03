@@ -2,11 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function PokemonList(props) {
-  return (
-    <ul>
-      {props.pokemons.map(pokemon => (
-        <li key={'pokemon_' + pokemon.id}><Link to={'pokemon/' + pokemon.id}>{pokemon.name}</Link></li>
-      ))}
-    </ul>
-  )
+  const getId = (url) => {
+    return url.split('/').reverse()[1]
+  }
+
+  if (props.pokemons) {
+    return (
+      <ul>
+        {props.pokemons.map(pokemon => (
+          <li key={'pokemon_' + pokemon.name}><Link to={'pokemon/' + getId(pokemon.url)}>{pokemon.name}</Link></li>
+        ))}
+      </ul>
+    )
+  }
+
+  return null
 }
