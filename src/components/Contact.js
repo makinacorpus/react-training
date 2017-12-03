@@ -1,6 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { withStyles } from 'material-ui/styles'
+import TextField from 'material-ui/TextField'
+import Button from 'material-ui/Button'
+import Typography from 'material-ui/Typography'
 
-export class Contact extends Component {
+const styles = theme => ({
+  container: {
+    width: '80%',
+    maxWidth: 400,
+    marginBottom: 40
+  },
+  textField: {
+    width: '100%',
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  }
+})
+
+class Contact extends Component {
   state = {
     email: '',
     message: ''
@@ -29,32 +46,70 @@ export class Contact extends Component {
   }
 
   render() {
+    const { classes } = this.props
+
     return (
       <div>
-        <h1>Contact</h1>
+        <Typography type="display2" gutterBottom>
+          Contact
+        </Typography>
+        
+        <Typography type="headline" gutterBottom headlineMapping={{headline: 'h2'}}>
+          Formulaire controlé
+        </Typography>
+        <form className={classes.container} onSubmit={this.submitForm}>
+          <TextField 
+            id="email"
+            label="Email"
+            className={classes.textField}
+            value={this.state.email}
+            onChange={this.handleChangeEmail}
+            margin="normal"
+          />
 
-        <h2>Formulaire controlé</h2>
-        <form onSubmit={this.submitForm}>
-          <label htmlFor="email">Email</label>
-          <input id="email" value={this.state.email} onChange={this.handleChangeEmail} />
+          <TextField 
+            id="message"
+            label="Message"
+            multiline
+            className={classes.textField}
+            value={this.state.message}
+            onChange={this.handleChangeMessage}
+            margin="normal"
+          />
 
-          <label htmlFor="message">Message</label>
-          <textarea id="message" value={this.state.message} onChange={this.handleChangeMessage}></textarea>
-
-          <button type="submit" onClick={this.submitForm}>Envoyer</button>
+          <div className={classes.textField}>
+            <Button raised color="primary" type="submit" onClick={this.submitForm}>Envoyer</Button>
+          </div>
         </form>
 
-        <h2>Formulaire non controlé</h2>
-        <form onSubmit={this.submitForm}>
-          <label htmlFor="email">Email</label>
-          <input id="email" ref={email => this.email = email} />
+        <Typography type="headline" gutterBottom headlineMapping={{headline: 'h2'}}>
+          Formulaire non controlé
+        </Typography>
+        <form className={classes.container} onSubmit={this.submitForm}>
+          <TextField 
+            id="email"
+            label="Email"
+            className={classes.textField}
+            inputRef={email => this.email = email}
+            margin="normal"
+          />
 
-          <label htmlFor="message">Message</label>
-          <textarea id="message" ref={message => this.message = message}></textarea>
+          <TextField 
+            id="message"
+            label="Message"
+            multiline
+            className={classes.textField}
+            inputRef={message => this.message = message}
+            margin="normal"
+          />
 
-          <button type="submit" onClick={this.unControlledSubmit}>Envoyer</button>
+          <div className={classes.textField}>
+            <Button raised color="primary" type="submit" onClick={this.unControlledSubmit}>Envoyer</Button>
+          </div>
         </form>
       </div>
     )
   }
 }
+
+export default withStyles(styles)(Contact);
