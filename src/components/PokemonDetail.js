@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classnames from 'classnames'
 
+import { getPokemon } from '../services/api'
+
 export default class PokemonDetail extends Component {
   state = {
     pokemon: null,
@@ -8,8 +10,7 @@ export default class PokemonDetail extends Component {
   }
   getPokemon(id) {
     this.setState({loading: true})
-    fetch('http://pokeapi.co/api/v2/pokemon/' + id)
-      .then(response => response.json())
+    getPokemon(id)
       .then((response) => {
         this.setState({pokemon: response, loading: false})
       })

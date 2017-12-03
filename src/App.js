@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   BrowserRouter,
   Route,
 } from 'react-router-dom'
 
+import { getAllPokemons } from './services/api'
 import PokemonList from './components/PokemonList'
 import PokemonDetail from './components/PokemonDetail'
 
@@ -16,8 +17,7 @@ class App extends Component {
   }
   componentDidMount() {
     this.setState({loading: true})
-    fetch('http://pokeapi.co/api/v2/pokemon/')
-      .then(response => response.json())
+    getAllPokemons()
       .then((response) => {
         this.setState({pokemons: response.results, loading: false})
       })
